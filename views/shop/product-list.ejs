@@ -10,7 +10,7 @@
               <h5><strong>Description: </strong><%= product.desc%></h5>
               <h5><strong>Price: </strong><%= product.price %></h5>
               <div class="Iten__card__action">
-                <a href="/products/<%= product.id %>">Details</a>
+                <a class = "button__card__action" href="/products/<%= product.id %>">Details</a>
                 <form action="/add-Item-toCard" method = "POST">
                   <button type = "submit" class = "button__card__action">Add to Card</button>
                 </form>
