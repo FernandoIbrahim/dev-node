@@ -11,11 +11,12 @@ exports.getAdminAddProduct = (req, res, next) => {
 
 exports.postAdminAddProduct = (req, res , next) => {
     console.log(req.body.title);
+    console.log(req.body.description);
     let title = req.body.title;
     let image = req.body.image;
-    let descprition = req.boy.description;
+    let description = req.body.description;
     let value = req.body.value;
-    const product = new Product(title, image, descprition, value);
+    const product = new Product(title, image, description, value);
     product.save();
     res.redirect('/product');
 }

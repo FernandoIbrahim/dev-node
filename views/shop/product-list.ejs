@@ -9,11 +9,9 @@
               <img src="<%= product.image %>" class="card__Box__Image">
               <h5><strong>Description: </strong><%= product.desc%></h5>
               <h5><strong>Price: </strong><%= product.price %></h5>
-              <div class="Iten__card__action">
+              <div class="box__card__action">
                 <a class = "button__card__action" href="/products/<%= product.id %>">Details</a>
-                <form action="/add-Item-toCard" method = "POST">
-                  <button type = "submit" class = "button__card__action">Add to Card</button>
-                </form>
+                <%- include('../includes/add-to-cart', {product: product})%>
               </div>
             </div>
             <% }) %>

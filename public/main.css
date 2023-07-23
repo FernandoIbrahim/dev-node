@@ -35,9 +35,10 @@ main{
 
 .card__body{
     width: 100%;
-    height: 400px;
+    height: 500px;
     border-radius: 5px;
     box-shadow: 4px 4px 15px;
+    align-items: center;
     display: flex;
 }
 
@@ -91,6 +92,8 @@ h5{
     display: flex;
     flex-direction: row;
     margin-top: 10px;
+    justify-content: center;
+    width: 100%;
 }
 
 
@@ -106,4 +109,11 @@ h5{
     border-radius: 3px;
     justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.webSiteItemBody{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
