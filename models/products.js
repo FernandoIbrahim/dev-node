@@ -18,7 +18,8 @@ const getProductsFromFile  = (cb) =>{
 
 
 module.exports = class Product{
-    constructor(t, imageUrl, description, price){
+    constructor(id, t , imageUrl, description, price){
+        this.id = id;
         this.title = t;
         this.image = imageUrl;
         this.desc = description;
@@ -26,13 +27,25 @@ module.exports = class Product{
     }
     
     save(){
-        this.id = Math.random().toString();
-        getProductsFromFile( (products) => {
-            products.push(this);
-            fs.writeFile(p, JSON.stringify(products), (err) => {
-                   console.log(err);
-            }); //escreve no arquivo os dados em JSON do vertor products já convertidos
-        });
+        console.log(this.id)
+        if(this.id){
+            getProductsFromFile((products) => {
+                const existingProductIndex = products.findIndex(p => p.id === this.id);
+                const updateProduct = [...products];
+                updateProduct[existingProductIndex] = this;
+                fs.writeFile(p, JSON.stringify(updateProduct), (err => {
+                    console.log(err);
+                }))
+            });
+        }else{
+            this.id = Math.random().toString();
+            getProductsFromFile( (products) => {
+                products.push(this);
+                fs.writeFile(p, JSON.stringify(products), (err) => {
+                       console.log(err);
+                }); //escreve no arquivo os dados em JSON do vertor products já convertidos
+            });
+        }
     }   
 
     static fetchAll(cb){
@@ -45,5 +58,4 @@ module.exports = class Product{
             cb(product);
         });
     }
-
-} 
+}   

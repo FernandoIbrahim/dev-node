@@ -10,7 +10,10 @@ ul, a{
     display: flex;
     flex-direction: row;
     list-style: none;
+}
 
+a{
+    margin: 0px;
 }
 
 li ,a {
@@ -98,8 +101,9 @@ h5{
 
 
 .button__card__action {
+    align-items: center;
     background-color: orange;
-    padding: 10px 25px;
+    padding: 7px 20px;
     color: white;
     text-align: center;
     border: none;

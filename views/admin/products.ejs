@@ -15,9 +15,7 @@
                     <button class = "button__card__action" type="submit">Delete</button>
                 </form>
 
-                <form action="/edit-product" method="POST" class = "form__card__action">
-                    <button class = "button__card__action" type="submit">Edit</button>
-                </form>
+                <a class = "button__card__action" href="/admin/edit-product/<%=product.id%>?edit=true">Edit</a>
               </div>
             </div>
             <% }) %>

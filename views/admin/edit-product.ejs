@@ -4,16 +4,20 @@
     <main>
         <div class = "main_form">
             <h5>Add Product</h5>
-            <form action="/admin/add-product" method="POST">
+            <form action="/admin/<%if(edit){%>edit-product<%}else{%>add-product<%}%>" method="POST">
                 <label>Title:</label>
-                <input type="text" name="title">
+                <input type="text" name="title" value="<% if(edit){ %><%=product.title%><% }else{%><%}%>">
                 <label>Image Url:</label>
-                <input type="text" name="image">
+                <input type="text" name="image" value = "<% if(edit){%><%=product.image%><% }else {%><%}%> ">
                 <label>Description:</label>
-                <input type="text" name="description">
+                <input type="text" name="description" value = "<%if(edit){%><%=product.desc%> <% }else{%><%} %> ">
                 <label>Value</label>
-                <input type="text" name="value">
-                <button type = "submit">Add Product</button>
+                <input type="text" name="value" value = "<% if(edit){ %><%=product.price%><%}else{%><%}%>">
+
+                <%if(edit){ %>
+                    <input type="hidden" name = "productId" value="<%=product.id%>">
+                <% } %>
+                <button type = "submit"><% if(edit) { %>Update Product <% } else { %> Add Product <% } %></button>
             </form>
         </div>
     </main>
