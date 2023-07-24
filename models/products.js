@@ -46,7 +46,18 @@ module.exports = class Product{
                 }); //escreve no arquivo os dados em JSON do vertor products já convertidos
             });
         }
-    }   
+    }
+
+    delete(){
+        getProductsFromFile((products) => {
+            const existingProductIndex = products.findIndex( p => p.id === this.id);
+            const updateProducts = [...products];
+            const trash  = updateProducts.splice(existingProductIndex,existingProductIndex);
+            fs.writeFile(p, JSON.stringify(updateProducts), (err) => {
+                console.log(err);
+            });
+        });
+    }
 
     static fetchAll(cb){
     getProductsFromFile(cb);
@@ -58,4 +69,4 @@ module.exports = class Product{
             cb(product);
         });
     }
-}   
+}

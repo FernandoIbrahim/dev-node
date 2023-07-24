@@ -11,7 +11,8 @@
               <h5><strong>Price: </strong><%= product.price %></h5>
               <div class="box__card__action">
 
-                <form action="/delete-product" method="POST" class = "form__card__action">
+                <form action="/admin/delete-product" method="POST" class = "form__card__action">
+                    <input type="hidden" name = "productId" value="<%=product.id%>">
                     <button class = "button__card__action" type="submit">Delete</button>
                 </form>
 
