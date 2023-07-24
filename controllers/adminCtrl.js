@@ -2,11 +2,12 @@ const Product = require('../models/products');
 
 
 exports.getAdminAddProduct = (req, res, next) => {
-    res.render('admin/add-product', {
+    res.render('admin/edit-product', {
         path: '/admin/add-product',
         pageTitle: 'Adding Product'
     });
 };
+
 
 
 exports.postAdminAddProduct = (req, res , next) => {
@@ -21,15 +22,18 @@ exports.postAdminAddProduct = (req, res , next) => {
     res.redirect('/product');
 }
 
-
-
-exports.getAdminEditProduct =  (req, res, next) => {
-    res.render('admin/edit-product', {
-        path: '/admin/edit-product',
-        pageTitle: 'Edit Product'
-    });
+exports.getAdminEditProduct = (req, res, next) => {
+    const editMode = req.query.edit;
+    if(!editMode){
+        res.redirect('/');
+    }else{
+        res.render('admin/edit-product', {
+            path: '/admin/add-product',
+            pageTitle: 'Adding Product',
+            edit: editMode
+        });
+    }
 };
-
 
 //getAdmin >> admin/Products
 
