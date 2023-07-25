@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { uptime } = require('process');
 
 const f = path.join(path.dirname(process.mainModule.filename), 'data', 'cart.json');
 
@@ -24,11 +25,32 @@ module.exports = class Cart{
                 updatedProduct = {id: id, qty: 1}  //caso o item não exitsa cria o item com o valor informado
                 cart.products = [...cart.products, updatedProduct]//adiciona ele dentro de card.products
             }
-            cart.totalPrice = cart.totalPrice + +productPrice;
+            cart.totalPrice = cart.totalPrice + productPrice;
             fs.writeFile(f, JSON.stringify(cart), (err) => {
                 console.log(err); 
             });
         })
 
+    }
+
+    static deleteProduct(id, productPrice){
+        fs.readFile(f,(err, fileContent) => {
+            if(err){
+                return;
+            }else{
+            const updatedCart = JSON.parse(fileContent);
+            console.log(updatedCart);
+            const product = updatedCart.products.find((p) => p.id === id);
+            if(product){
+                console.log(product);
+                const productQyt = product.qty
+                updatedCart.products = updatedCart.products.filter( (p) => p.id !== id);
+                updatedCart.totalPrice = updatedCart.totalPrice - (productPrice * productQyt)
+                fs.writeFile(f, JSON.stringify(updatedCart), (err) =>{
+                    console.log(err);
+                });
+            }
+            }
+        })
     }
 }

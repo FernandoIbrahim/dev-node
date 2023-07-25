@@ -2,7 +2,7 @@
 const { error } = require('console');
 const fs = require('fs');
 const path = require('path');
-
+const modelCart = require('./cart');
 
 const p = path.join(path.dirname(process.mainModule.filename),'data', 'products.json');
 
@@ -42,7 +42,7 @@ module.exports = class Product{
             getProductsFromFile( (products) => {
                 products.push(this);
                 fs.writeFile(p, JSON.stringify(products), (err) => {
-                       console.log(err);
+                    console.log(err);
                 }); //escreve no arquivo os dados em JSON do vertor products já convertidos
             });
         }
@@ -51,10 +51,16 @@ module.exports = class Product{
     delete(){
         getProductsFromFile((products) => {
             const existingProductIndex = products.findIndex( p => p.id === this.id);
-            const updateProducts = [...products];
-            const trash  = updateProducts.splice(existingProductIndex,existingProductIndex);
+            console.log(this.id);
+            console.log(products);
+            let updateProducts = [...products];
+            const productID = updateProducts[existingProductIndex].id;
+            const productValue = updateProducts[existingProductIndex].price;
+            updateProducts = updateProducts.filter(p => p.id !==  this.id );
             fs.writeFile(p, JSON.stringify(updateProducts), (err) => {
-                console.log(err);
+                if(!err){
+                    modelCart.deleteProduct(productID,productValue)
+                }
             });
         });
     }

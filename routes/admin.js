@@ -8,5 +8,5 @@ route.post('/admin/add-product', adminCtrl.postAdminAddProduct);
 route.get('/admin/edit-product/:productId', adminCtrl.getAdminEditProduct);
 route.post('/admin/edit-product', adminCtrl.postAdminEditProduct);
 route.get('/admin/products', adminCtrl.getAdminProducts);
-route.post('/admin/delete-product', adminCtrl.postAdminDeleProduct);
+route.post('/admin/delete-product', adminCtrl.postAdminDeleteProduct);
 module.exports = route;
