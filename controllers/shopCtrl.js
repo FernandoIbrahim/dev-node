@@ -1,12 +1,27 @@
 const Product = require('../models/products'); 
-const Card = require('../models/cart');
+const Cart = require('../models/cart');
 
 
 
 exports.getCart = (req, res, next) => {
-    res.render('shop/cart', {
-        path: '/cart',
-        pageTitle: 'cart'
+
+
+    Cart.fetchAll((cart) => {
+        Product.fetchAll((products) => {
+            const cardProducts = [];
+            for(prod of products){
+                const cardProductData =  cart.products.find((p) => p.id === prod.id);
+                if(cardProductData){
+                    cardProducts.push({productDetails: prod, qty: cardProductData.qty});
+                }
+                console.log(cardProducts);
+                res.render('shop/cart', {
+                    path: '/cart',
+                    pageTitle: 'cart',
+                    cart: cardProducts
+                });
+            }
+        })
     });
 };
 
@@ -14,7 +29,7 @@ exports.getCart = (req, res, next) => {
 exports.postCart = (req, res, next) => {
     const prodId = req.body.productId;
     Product.findByID(prodId, (product) => {
-        Card.addProduct(product.id, product.price);
+        Cart.addProduct(product.id, product.price);
     });
     res.redirect('/cart');
 };

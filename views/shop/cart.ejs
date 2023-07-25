@@ -1,5 +1,16 @@
 <%- include('../includes/head.ejs') %>
 <body>
-    <%- include('../includes/header.ejs') %>
-    <h1>Card</h1>
+  <%- include('../includes/header.ejs') %>
+    <main>
+          <div class="webSiteBody">
+                <% cart.forEach((product) => { %>
+                    <li><%=product.productDetails.title%> (<%=product.qty%>)</li>
+                    <form action="/cart/delete-item" method = "POST">
+                        <input type="hidden" name="id" value="<%= product.productDetails.id %>">
+                        <button type="submit"> Delete</button>
+                    </form>
+                <% }) %>
+          </div>
+      </main>
 </body>
+</html>

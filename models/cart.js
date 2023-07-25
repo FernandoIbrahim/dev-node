@@ -22,7 +22,7 @@ module.exports = class Cart{
                 updatedProduct.qty = updatedProduct.qty + 1;  //caso realmente exista o produto realiza as reguinte os peraçoes com ele, 
                 cart.products[existingProductIndex] = updatedProduct; //atualiza os dados do produto já exitente no item adequado do vetor informado
             }else{
-                updatedProduct = {id: id, qty: 1}  //caso o item não exitsa cria o item com o valor informado
+                updatedProduct = {id: id, qty: 1, details: null}  //caso o item não exitsa cria o item com o valor informado
                 cart.products = [...cart.products, updatedProduct]//adiciona ele dentro de card.products
             }
             cart.totalPrice = cart.totalPrice + productPrice;
@@ -53,4 +53,18 @@ module.exports = class Cart{
             }
         })
     }
+
+    static fetchAll(cb){
+        fs.readFile(f, (err, fileContent) => {
+
+            if(err){
+                cb([]);
+            }else{
+                cb(JSON.parse(fileContent));
+            }
+        })
+    }
+
+
+
 }
