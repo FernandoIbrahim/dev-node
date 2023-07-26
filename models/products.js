@@ -33,7 +33,7 @@ module.exports = class Product{
                 const existingProductIndex = products.findIndex(p => p.id === this.id);
                 const updateProduct = [...products];
                 updateProduct[existingProductIndex] = this;
-                fs.writeFile(p, JSON.stringify(updateProduct), (err => {
+                fs.writeFile(p, JSON.stringify(updateProduct), (err => { 
                     console.log(err);
                 }))
             });
@@ -51,7 +51,7 @@ module.exports = class Product{
     delete(){
         getProductsFromFile((products) => {
             const existingProductIndex = products.findIndex( p => p.id === this.id);
-            console.log(this.id);
+            console.log(this.id); 
             console.log(products);
             let updateProducts = [...products];
             const productID = updateProducts[existingProductIndex].id;

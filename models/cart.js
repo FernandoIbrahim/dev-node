@@ -7,8 +7,8 @@ const f = path.join(path.dirname(process.mainModule.filename), 'data', 'cart.jso
 module.exports = class Cart{
     static addProduct(id, productPrice){
         fs.readFile(f, (err, fileContent) => {
-            let cart = {products: [], totalPrice: 0}
-            if(!err){
+            let cart = {products: [], totalPrice: 0} 
+            if(!err){ 
                 cart = JSON.parse(fileContent);     //faz a leitura dos dados já previamente escritos no arquivo
             }
 
@@ -22,7 +22,7 @@ module.exports = class Cart{
                 updatedProduct.qty = updatedProduct.qty + 1;  //caso realmente exista o produto realiza as reguinte os peraçoes com ele, 
                 cart.products[existingProductIndex] = updatedProduct; //atualiza os dados do produto já exitente no item adequado do vetor informado
             }else{
-                updatedProduct = {id: id, qty: 1, details: null}  //caso o item não exitsa cria o item com o valor informado
+                updatedProduct = {id: id, qty: 1}  //caso o item não exitsa cria o item com o valor informado
                 cart.products = [...cart.products, updatedProduct]//adiciona ele dentro de card.products
             }
             cart.totalPrice = cart.totalPrice + productPrice;
@@ -64,6 +64,21 @@ module.exports = class Cart{
             }
         })
     }
+
+    static deleteItem(id){
+        this.fetchAll((cart) => {
+            const productIndex = cart.products.findIndex((p) => p.id === id);
+            if(cart.products[productIndex].qty > 1){ 
+                cart.products[productIndex].qty = cart.products[productIndex].qty - 1;
+            }else{
+                cart = {products: cart.products.filter((p) => p.id !== id), totalPrice: cart.totalPrice}
+            }
+            console.log(cart);
+            fs.writeFile(f, JSON.stringify(cart) , (err) => {
+                console.log(err);
+            });
+        });
+    } 
 
 
 
