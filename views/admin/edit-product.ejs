@@ -12,7 +12,7 @@
                 <label>Description:</label>
                 <input type="text" name="description" value = "<%if(edit){%><%=product.desc%> <% }else{%><%} %> ">
                 <label>Value</label>
-                <input type="text" name="value" value = "<% if(edit){ %><%=product.price%><%}else{%><%}%>">
+                <input type="number" name="value" value = "<% if(edit){ %><%=product.price%><%}else{%><%}%>">
 
                 <%if(edit){ %>
                     <input type="hidden" name = "productId" value="<%=product.id%>">
