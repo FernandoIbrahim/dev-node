@@ -1,0 +1,19 @@
+<%- include('../includes/head.ejs') %> 
+<body>
+  <%- include('../includes/header.ejs') %>
+    <main>
+          <div class="webSiteBody">
+                <% for(product of cart){ %>
+                    <div style="width: 100%;">
+                    <li><%=product.productDetails.title%> (<%=product.qty%>)</li>
+                    <form action="/cart/delete-item" method = "POST">
+                        <input type="hidden" name="id" value="<%= product.productDetails.id %>">
+                        <input type="hidden" name="productPrice" value="<%= product.productDetails.price %>">
+                        <button type="submit"> Delete</button>
+                    </form>
+                    </div>
+                <% } %>
+          </div>  
+      </main>
+</body>   
+</html>

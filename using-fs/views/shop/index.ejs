@@ -1,0 +1,20 @@
+<%- include('../includes/head.ejs') %>
+<body>
+  <%- include('../includes/header.ejs') %>
+    <main>
+          <div class="webSiteBody">
+            <% prods.forEach((product) => { %>
+            <div class="card__body">
+              <h3 class="card__body__title"><%= product.title %></h3>
+              <img src="<%= product.image %>" class="card__Box__Image">
+              <h5><strong>Description: </strong><%= product.desc%></h5>
+              <h5><strong>Price: </strong><%= product.price %></h5>
+              <div class="Iten__card__action">
+                <%- include('../includes/add-to-cart', {product: product}) %>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+      </main>
+</body>
+</html>
