@@ -32,8 +32,5 @@ If you want to explore or contribute to this project, follow these steps:
 
 I welcome contributions to this project! If you have any ideas or improvements, feel free to open an issue or submit a pull request.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
 
 Happy coding!
