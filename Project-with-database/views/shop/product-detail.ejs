@@ -6,10 +6,10 @@
             <h1><%= product.title %></h1>
             <hr>
             <div>
-              <img src="<%= product.image %>" class = card__Box__Image>
+              <img src="<%= product.imageURL %>" class = card__Box__Image>
             </div>
             <h2><%= product.price %></h2>
-            <p><%= product.desc %></p>
+            <p><%= product.description %></p>
             <div class="box__card__action">
               <%- include('../includes/add-to-cart', {product: product})%>
             </div>

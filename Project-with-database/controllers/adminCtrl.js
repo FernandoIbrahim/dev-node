@@ -16,10 +16,13 @@ exports.postAdminAddProduct = (req, res , next) => {
     let title = req.body.title;
     let image = req.body.image;
     let description = req.body.description;
-    let value = req.body.value;
-    const product = new Product(null ,title, image, description, value);
-    product.save();
-    res.redirect('/product');
+    let price = req.body.value;
+    const product = new Product(null, title, image, description, price);
+    product.save()
+    .then(() =>{
+        res.redirect('/product');
+    }) 
+    .catch(err => {console.log(err)});
 }
 
 exports.getAdminEditProduct = (req, res, next) => {
@@ -50,8 +53,11 @@ exports.postAdminEditProduct = (req, res, next) => {
     const prodImage = req.body.image;
     const prodValue = req.body.value;
     const product = new Product(prodId, prodTitle ,prodImage , prodDesc, prodValue)
-    product.save();
-    res.redirect('/admin/products');
+    product.save().
+    then(() =>{
+        res.redirect('/admin/products');
+    }) 
+    .catch(err => {console.log(err)});
 };
 
 exports.postAdminDeleteProduct = (req, res, next) => {
