@@ -3,20 +3,21 @@ const Cart = require('../models/cart');
 
 
 exports.getIndex = (req, res, next) => {
-    Product.fetchAll()
-    .then(([rows, fieldData]) => {
+    Product.findAll()
+    .then((products) => {
+        console.log(products)
         res.render('shop/index', {
-            prods: rows,
-            pageTitle: 'Shop',
-            path:'/'
-        });
+            pageTitle: 'All Products ',
+            prods: products, 
+            path: '/'
+        })
+
     })
     .catch((err) => console.log(err));
 };
 
 
 exports.getCart = (req, res, next) => {
-
 
     Cart.fetchAll((cart) => {
         Product.fetchAll((products) => {
@@ -64,15 +65,16 @@ exports.getCheckout = (req, res, next) => {
 }
 
 exports.getProducts = (req, res , next) => {
-    Product.fetchAll()
-    .then(([rows, fieldData]) => {
+    Product.findAll()
+    .then((products) => {
         res.render('shop/product-list', {
             pageTitle: 'Product List',
-            prods: rows, 
+            prods: products, 
             path: '/product'
         })
+
     })
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err));
 }
 
 exports.getProductsDetailsByID = (req, res, next) => {

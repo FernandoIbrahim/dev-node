@@ -14,15 +14,21 @@ exports.getAdminAddProduct = (req, res, next) => {
 
 exports.postAdminAddProduct = (req, res , next) => {
     let title = req.body.title;
-    let image = req.body.image;
+    let imageUrl = req.body.imageUrl;
     let description = req.body.description;
     let price = req.body.value;
-    const product = new Product(null, title, image, description, price);
-    product.save()
-    .then(() =>{
-        res.redirect('/product');
-    }) 
-    .catch(err => {console.log(err)});
+
+    Product.create({
+        title: title,
+        price: price,
+        imageUrl: imageUrl,
+        description: description
+        
+    })
+    .then((result) => {
+        console.log(result)
+    })
+    .catch()
 }
 
 exports.getAdminEditProduct = (req, res, next) => {
