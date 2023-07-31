@@ -22,7 +22,7 @@ exports.getCart = (req, res, next) => {
     Cart.fetchAll((cart) => {
         Product.fetchAll((products) => {
             const cardProducts = [];
-            for(prod of products){
+            for(prod of products){ 
                 if(cart.products){
                     const cardProductData =  cart.products.find((p) => p.id === prod.id);
                     if(cardProductData){
@@ -79,15 +79,16 @@ exports.getProducts = (req, res , next) => {
 
 exports.getProductsDetailsByID = (req, res, next) => {
     const prodId = req.params.productId;
-    Product.findByID(prodId)
-    .then(([product]) => {
-        console.log(product[0])
+    Product.findAll( {where: {id: prodId}})
+    .then((product) => {
+        console.log(product)
         res.render('shop/product-detail',{
             pageTitle: 'Product Details',
             product: product[0],
             path: ''
-        });
+        })
     })
+    .catch((err) => console.log(err));
 };
 
 

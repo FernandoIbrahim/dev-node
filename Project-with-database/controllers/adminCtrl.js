@@ -77,11 +77,13 @@ exports.postAdminDeleteProduct = (req, res, next) => {
 //getAdmin >> admin/Products
 
 exports.getAdminProducts =  (req, res,  next) => {
-    Product.fetchAll((produtos) => {
+    Product.findAll()
+    .then((produtos) => {
         res.render('admin/products', {
             path: '/admin/products',
             pageTitle: 'Admin Products',
             prods: produtos
         })
-    });
+    })
+    .catch((err) => console.log(err));
 };
