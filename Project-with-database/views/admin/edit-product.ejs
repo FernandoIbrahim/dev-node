@@ -8,9 +8,9 @@
                 <label>Title:</label>
                 <input type="text" name="title" value="<% if(edit){ %><%=product.title%><% }else{%><%}%>">
                 <label>Image Url:</label>
-                <input type="text" name="image" value = "<% if(edit){%><%=product.image%><% }else {%><%}%> ">
+                <input type="text" name="image" value = "<% if(edit){%><%=product.imageUrl%><% }else {%><%}%> ">
                 <label>Description:</label>
-                <input type="text" name="description" value = "<%if(edit){%><%=product.desc%> <% }else{%><%} %> ">
+                <input type="text" name="description" value = "<%if(edit){%><%=product.description%> <% }else{%><%} %> ">
                 <label>Value</label>
                 <input type="number" name="value" value = "<% if(edit){ %><%=product.price%><%}else{%><%}%>">
 
