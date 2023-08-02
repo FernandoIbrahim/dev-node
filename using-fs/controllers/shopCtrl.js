@@ -5,8 +5,7 @@ const Cart = require('../models/cart');
 
 exports.getCart = (req, res, next) => {
 
-
-    Cart.fetchAll((cart) => {
+     Cart.fetchAll((cart) => {
         Product.fetchAll((products) => {
             const cardProducts = [];
             for(prod of products){
@@ -23,7 +22,7 @@ exports.getCart = (req, res, next) => {
                 cart: cardProducts
             });
         })
-    });
+    }); 
 };
 
 

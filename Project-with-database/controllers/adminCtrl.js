@@ -14,7 +14,7 @@ exports.getAdminAddProduct = (req, res, next) => {
 
 exports.postAdminAddProduct = (req, res , next) => {
     let title = req.body.title;
-    let imageUrl = req.body.imageUrl;
+    let imageUrl = req.body.image;
     let description = req.body.description;
     let price = req.body.value;
 
@@ -24,15 +24,13 @@ exports.postAdminAddProduct = (req, res , next) => {
         imageUrl: imageUrl,
         description: description
     })
-    .then((result) => {
-        console.log(result)
-    })
+    .then()
     .catch()
 }
 
 exports.getAdminEditProduct = (req, res, next) => {
     const editMode = req.query.edit;
-    if(!editMode){
+    if(!editMode){ 
         res.redirect('/');
     }else{
         const prodId = req.params.productId;
@@ -59,17 +57,14 @@ exports.postAdminEditProduct = (req, res, next) => {
     const prodDesc = req.body.description;
     const prodImage = req.body.image;
     const prodValue = req.body.value;
-    Product.findByPk(prodId)
+    Product.findByPk(prodId) 
     .then( (product) => {
         product.title = prodTitle
         product.description = prodDesc
         product.imageUrl = prodImage;
         product.value = prodValue;
         product.save()
-        .then( (a) => {
-            res.redirect('/')
-        })
-        .catch(err => console.log(err));
+        res.redirect('/');
     })
 
 
@@ -78,8 +73,15 @@ exports.postAdminEditProduct = (req, res, next) => {
 
 exports.postAdminDeleteProduct = (req, res, next) => {
     const prodId = req.body.productId;
-    const product = new Product(prodId, null, null ,null ,null);
-    product.delete();
+    Product.findByPk(prodId)
+    .then( (product) => {
+        product.destroy();
+        console.log('DELETED PRODUCT of Id ', prodId);
+        res.redirect('/');
+    })
+    .catch( (err) => {
+        console.log(err);
+    })
     res.redirect('/');
 }
 
@@ -87,7 +89,7 @@ exports.postAdminDeleteProduct = (req, res, next) => {
 
 exports.getAdminProducts =  (req, res,  next) => {
     Product.findAll()
-    .then((produtos) => {
+    .then((produtos) => {   
         res.render('admin/products', {
             path: '/admin/products',
             pageTitle: 'Admin Products',

@@ -9,7 +9,7 @@
               <img src="<%= product.imageUrl %>" class="card__Box__Image">
               <h5><strong>Description: </strong><%= product.description%></h5>
               <h5><strong>Price: </strong><%= product.price %></h5>
-              <div class="box__card__action">
+              <div class="box__card__action"> 
 
                 <form action="/admin/delete-product" method="POST" class = "form__card__action">
                     <input type="hidden" name = "productId" value="<%=product.id%>">
