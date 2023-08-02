@@ -16,8 +16,8 @@ The webstore project aims to create a simple and practical online store using No
 
 The repository is organized as follows:
 
-- `/json-data`: Contains the initial phase of the project where I used a JSON document to store data.
-- `/mysql-database`: Contains the current phase of the project where I am utilizing a MySQL database.
+- `/Project-With_Database`: Contains the initial phase of the project where I used a JSON document to store data.
+- `/using`: Contains the current phase of the project where I am utilizing a MySQL database.
 
 ## Installation and Usage
 
@@ -25,7 +25,7 @@ If you want to explore or contribute to this project, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/your-username/Dev_Node.git`
 2. Navigate to the specific folder based on the phase you want to explore: `cd json-data` or `cd mysql-database`
-3. Install dependencies: `npm install express ejs mysql2`
+3. Install dependencies: `npm install express ejs mysql2 sequelize`
 4. Run the project: `npm start`
 
 ## Contributing
