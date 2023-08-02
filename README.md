@@ -16,8 +16,8 @@ The webstore project aims to create a simple and practical online store using No
 
 The repository is organized as follows:
 
-- `/Project-With_Database`: Contains the initial phase of the project where I used a JSON document to store data.
-- `/using`: Contains the current phase of the project where I am utilizing a MySQL database.
+- `/fs`: Contains the initial phase of the project where I used a JSON document to store data.
+- `/Project-With_Database`: Contains the current phase of the project where I am utilizing a MySQL database.
 
 ## Installation and Usage
 
